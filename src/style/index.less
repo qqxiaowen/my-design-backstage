@@ -1,0 +1,65 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+a{
+    text-decoration: none;
+}
+.fll{
+    float: left;
+}
+.flr{
+    float: right;
+}
+.clearfix{
+    &::after{
+        display: block;
+        content: '';
+        clear: both;
+        overflow: hidden;
+    }
+}
+.mb30{
+    margin-bottom: 30px;
+}
+// 全局图片的样式
+.avatar-item{
+    width: 80px;
+    height: 80px;
+    margin: 0 auto;
+    display: block;
+}
+// 全局 el-card 样式
+.content .el-card{
+    position: relative;
+    min-height: calc( 100vh - 170px );
+}
+// 全局 page 翻页样式
+.page-ys{
+    position: absolute;
+    bottom: 10px;
+    left: 20px;
+    z-index: 500;
+}
+// table样式
+.table-ys{
+    width: 600px;
+    margin-left: 60px;
+}
+.el-submenu .el-menu-item{
+    min-width: 0;
+}
+
+// table下div字体控制
+.table-content-ys{
+    text-align: center;
+    line-height: 1.5;
+    white-space: normal;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    /*! autoprefixer: off */
+    -webkit-box-orient: vertical;
+    /* autoprefixer: on */
+}
