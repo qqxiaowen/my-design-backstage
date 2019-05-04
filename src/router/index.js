@@ -8,12 +8,14 @@ const components = {
   home:() => import('@/views/home'),
   teacherList: () => import('../views/teacher/teacherList.vue'),
   addTeacher:() => import('@/views/teacher/addTeacher'),
-  userlist:() => import('@/views/user/userlist'),
-  adduser:() => import('@/views/user/adduser'),
+  studentList:() => import('@/views/student/studentList.vue'),
+  addStudent:() => import('@/views/student/addStudent.vue'),
   newslist:() => import('@/views/news/newslist'),
   addnews:() => import('@/views/news/addnews'),
-  catelist:() => import('@/views/category/catelist'),
-  addcate:() => import('@/views/category/addcate'),
+  facultyList:() => import('@/views/faculty/facultyList'),
+  addFaculty:() => import('@/views/faculty/addFaculty'),
+  majorList: () => import('@/views/major/majorList.vue'),
+  addMajor: () => import('@/views/major/addMajor.vue'),
   swiperlist:() => import('@/views/swiper/swiperlist'),
   addswiper:() => import('@/views/swiper/addswiper'),
   topiclist:() => import('@/views/topic/topiclist'),
@@ -67,25 +69,25 @@ const router = new Router({
         },
         
         {
-          path:'userlist', 
+          path:'studentList', 
           meta:{
-            title:'普通用户列表'
+            title:'学生列表'
           },
-          component: components.userlist
+          component: components.studentList
         },
         {
-          path:'adduser', 
+          path:'addStudent', 
           meta:{
-            title:'添加普通用户'
+            title:'添加学生'
           },
-          component: components.adduser
+          component: components.addStudent
         },
         {
-          path:'reviseuser/:id', 
+          path:'reviseStudent/:id', 
           meta:{
-            title:'修改普通用户'
+            title:'修改学生'
           },
-          component: components.adduser
+          component: components.addStudent
         },
         {
           path:'newslist',
@@ -109,25 +111,46 @@ const router = new Router({
           component: components.addnews
         },
         {
-          path:'catelist', 
+          path:'facultyList', 
           meta:{
-            title:'分类列表页'
+            title:'院系列表'
           },
-          component: components.catelist
+          component: components.facultyList
         },
         {
-          path:'addcate', 
+          path:'addFaculty', 
           meta:{
-            title:'添加分类页'
+            title:'添加院系'
           },
-          component: components.addcate
+          component: components.addFaculty
         },
         {
-          path:'revisecate/:id', 
+          path:'reviseFaculty/:id', 
           meta:{
-            title:'修改分类页'
+            title:'修改院系'
           },
-          component: components.addcate
+          component: components.addFaculty
+        },
+        {
+          path:'majorList/:id', 
+          meta:{
+            title:'专业列表'
+          },
+          component: components.majorList
+        },
+        {
+          path:'addMajor', 
+          meta:{
+            title:'添加专业'
+          },
+          component: components.addMajor
+        },
+        {
+          path:'reviseMajor/:id', 
+          meta:{
+            title:'修改专业'
+          },
+          component: components.addMajor
         },
         {
           path:'swiperlist', 

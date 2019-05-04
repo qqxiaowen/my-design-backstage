@@ -2,23 +2,24 @@
     <div>
         <el-breadcrumb separator="/" class="mb30">
             <el-breadcrumb-item :to="{ path: '/layout/home' }">首页</el-breadcrumb-item>
-            <el-breadcrumb-item :to="{ path: '/layout/catelist' }">分类列表页</el-breadcrumb-item>
-            <el-breadcrumb-item v-if="!isrevise">添加分类页</el-breadcrumb-item>
-            <el-breadcrumb-item v-else>修改分类页</el-breadcrumb-item>
+            <el-breadcrumb-item :to="{ path: '/layout/facultyList' }">院系列表页</el-breadcrumb-item>
+            <el-breadcrumb-item v-if="!isrevise">添加院系</el-breadcrumb-item>
+            <el-breadcrumb-item v-else>修改院系</el-breadcrumb-item>
         </el-breadcrumb>
         
         <el-card>
             <el-form ref="form" :model="forData" label-width="80px" label-position="left" style="width:500px"  class="table-ys">
-                <el-form-item label="新闻标题" required>
-                    <el-input v-model="forData.title" ></el-input>
+                <el-form-item label="院系名称" required>
+                    <el-input v-model="forData.facultyName" ></el-input>
                 </el-form-item >
-                <el-form-item required label="新闻头图">
-                    <Uploadimg v-model="forData.icon" />
-                </el-form-item>
+                 <el-form-item label="院系描述" required>
+                    <el-input v-model="forData.desc" ></el-input>
+                </el-form-item >
+               
                 <el-form-item>
                         <el-button type="primary" v-if="!isrevise" @click="handleSubmit">立即创建</el-button>
                         <el-button v-else type="primary" @click="handlerevise">立即修改</el-button>
-                        <el-button @click="$router.push('/layout/catelist')">取消</el-button>
+                        <el-button @click="$router.push('/layout/facultyList')">取消</el-button>
                     </el-form-item>
             </el-form>
         </el-card>
@@ -28,42 +29,38 @@
 </template>
 
 <script>
-import Uploadimg from '@/components/Uploadimg'
     export default {
-        components:{
-            Uploadimg
-        },
         data(){
             return{
                 forData:{}
             }
         },
         methods:{
-            handleSubmit(){ //创建分类
-                this.$axios.post('/ddyj/category',this.forData).then(res => {
-                    if(res.code == 200){
+            handleSubmit(){ //创建院系
+                this.$axios.post('/faculty',this.forData).then(res => {
+                    if(res.code == 0){
                         this.$message.success(res.msg)
                         setTimeout(() => {
-                            this.$router.push(`/layout/catelist`)
-                        },500)
+                            this.$router.push(`/layout/facultyList`)
+                        }, 500)
                     }else{
                         this.$message(res.msg)
                     }
                 })
             },
-            getdata(){ //获取修改分类的信息
+            getdata(){ //获取修改院系的信息
                 let {id} = this.$route.params;
-                this.$axios.get(`/ddyj/category/${id}`).then(res => {
+                this.$axios.get(`/faculty/${id}`).then(res => {
                     this.forData = res.data
                 })
             },
             handlerevise(){ //修改分类
                 let {id} = this.$route.params;
-                this.$axios.put(`/ddyj/category/${id}`,this.forData).then(res => {
-                    if(res.code == 200){
+                this.$axios.put(`/faculty/${id}`,this.forData).then(res => {
+                    if(res.code == 0){
                         this.$message.success(res.msg)
                         setTimeout(() => {
-                            this.$router.push('/layout/catelist')
+                            this.$router.push('/layout/facultyList')
                         }, 500);
                     }else{
                         this.$message(res.msg)
@@ -76,7 +73,7 @@ import Uploadimg from '@/components/Uploadimg'
         },
         computed:{
             isrevise(){
-                if(this.$route.meta.title == '修改分类页'){
+                if(this.$route.meta.title == '修改院系'){
                     this.getdata()
                     return true;
                 }else{

@@ -15,13 +15,13 @@
             </el-submenu>
             <el-submenu index="user-manage" v-if="status">
                 <template slot="title"> 学生用户管理 </template>
-                <router-link to="/layout/userlist"><el-menu-item index="/layout/userlist"> 学生用户列表</el-menu-item></router-link>
-                <router-link to="/layout/adduser"><el-menu-item index="/layout/adduser"> 添加学生用户</el-menu-item></router-link>
+                <router-link to="/layout/studentList"><el-menu-item index="/layout/studentList"> 学生用户列表</el-menu-item></router-link>
+                <router-link to="/layout/addStudent"><el-menu-item index="/layout/addStudent"> 添加学生用户</el-menu-item></router-link>
             </el-submenu>
             <el-submenu index="category-manage" v-if="status">
                 <template slot="title"> 院系、专业、班级管理 </template>
-                <router-link to="/layout/catelist"><el-menu-item index="/layout/catelist"> 院系列表</el-menu-item></router-link>
-                <router-link to="/layout/addcate"><el-menu-item index="/layout/addcate"> 添加院系</el-menu-item></router-link>
+                <router-link to="/layout/facultyList"><el-menu-item index="/layout/facultyList"> 院系列表</el-menu-item></router-link>
+                <router-link to="/layout/addFaculty"><el-menu-item index="/layout/addFaculty"> 添加院系</el-menu-item></router-link>
             </el-submenu>
             <el-submenu index="swiper-manage" v-if="status">
                 <template slot="title"> 科目管理 </template>
@@ -58,9 +58,6 @@ export default {
         $route(to, from){
             this.text = to.path
         }
-    },
-    created() {
-        console.log('status:', this.status)
     }
 }
 </script>
