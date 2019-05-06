@@ -6,7 +6,7 @@
             </el-col>
             <el-col style="height:100vh; overflow-y:scroll; display:flex" :span='20'>
                 <Hearder :statusMsg=statusMsg />
-                <router-view  class="content"/>
+                <router-view :teacherInfo="teacherInfo"  class="content"/>
             </el-col>
         </el-row>
         
@@ -26,7 +26,8 @@ import Vue from 'vue'
         data() {
             return {
                 statusMsg: '普通教师',
-                status: 0
+                status: 0,
+                teacherInfo: null
             }
         },
 
@@ -35,7 +36,8 @@ import Vue from 'vue'
             this.$axios.get('/user/myself').then(res => {
                 if (res.code == 0 && res.data.superAdmin == 1) {
                     this.statusMsg = '管理员',
-                    this.status = 1
+                    this.status = 1;
+                    this.teacherInfo = res.data;
                 }
             })
         }

@@ -80,21 +80,26 @@ import Uploadimg from '@/components/Uploadimg'
         methods:{
             // 添加新用户 
             handleSubmit(){
-                if (this.formData.superAdminBoole) {
-                    this.formData.superAdmin = 1;
-                } else {
-                    this.formData.superAdmin = 0;
-                }
-                this.$axios.post(`/user/teacher`,this.formData).then( res => {
-                    if (res.code == 0) {
-                        this.$message.success(res.msg)
-                        setTimeout( () => {
-                            this.$router.push('/layout/teacherList');
-                        }, 500)
+                if (this.formData.numId && this.formData.username && this.formData.password && this.formData.faculty) {
+                    if (this.formData.superAdminBoole) {
+                        this.formData.superAdmin = 1;
                     } else {
-                        this.$message.info(res.msg)
+                        this.formData.superAdmin = 0;
                     }
-                })
+
+                    this.$axios.post(`/user/teacher`,this.formData).then( res => {
+                        if (res.code == 0) {
+                            this.$message.success(res.msg)
+                            setTimeout( () => {
+                                this.$router.push('/layout/teacherList');
+                            }, 500)
+                        } else {
+                            this.$message.info(res.msg)
+                        }
+                    })
+                } else {
+                    this.$message('请输入必填字段')
+                }
             },
             // 获取用户信息，用于修改
             getdata(){

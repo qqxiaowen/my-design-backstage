@@ -10,16 +10,16 @@ const components = {
   addTeacher:() => import('@/views/teacher/addTeacher'),
   studentList:() => import('@/views/student/studentList.vue'),
   addStudent:() => import('@/views/student/addStudent.vue'),
-  newslist:() => import('@/views/news/newslist'),
-  addnews:() => import('@/views/news/addnews'),
   facultyList:() => import('@/views/faculty/facultyList'),
   addFaculty:() => import('@/views/faculty/addFaculty'),
   majorList: () => import('@/views/major/majorList.vue'),
   addMajor: () => import('@/views/major/addMajor.vue'),
-  swiperlist:() => import('@/views/swiper/swiperlist'),
-  addswiper:() => import('@/views/swiper/addswiper'),
-  topiclist:() => import('@/views/topic/topiclist'),
-  topicdetail:() => import('@/views/topic/topicdetail'),
+  gradeList: () => import('@/views/grade/gradeList.vue'),
+  addGrade: () => import('@/views/grade/addGrade.vue'),
+  subjectList: () => import('@/views/subject/subjectList.vue'),
+  addSubject: () => import('@/views/subject/addSubject.vue'),
+  courseList: () => import('../views/course/courseList.vue'),
+  addCourse: () => import('../views/course/addCourse.vue'),
 }
 
 const router = new Router({
@@ -90,27 +90,6 @@ const router = new Router({
           component: components.addStudent
         },
         {
-          path:'newslist',
-          meta:{
-            title:'新闻列表页'
-          },
-          component: components.newslist
-        },
-        {
-          path:'addnews', 
-          meta:{
-            title:'添加新闻页'
-          },
-          component: components.addnews
-        },
-        {
-          path:'revisenews/:id', 
-          meta:{
-            title:'修改新闻页'
-          },
-          component: components.addnews
-        },
-        {
           path:'facultyList', 
           meta:{
             title:'院系列表'
@@ -132,7 +111,7 @@ const router = new Router({
           component: components.addFaculty
         },
         {
-          path:'majorList/:id', 
+          path:'majorList', 
           meta:{
             title:'专业列表'
           },
@@ -153,40 +132,68 @@ const router = new Router({
           component: components.addMajor
         },
         {
-          path:'swiperlist', 
+          path:'gradeList', 
           meta:{
-            title:'轮播图列表页'
+            title:'班级列表'
           },
-          component: components.swiperlist
+          component: components.gradeList
         },
         {
-          path:'addswiper', 
+          path:'addGrade', 
           meta:{
-            title:'添加轮播图页'
+            title:'添加班级'
           },
-          component: components.addswiper
+          component: components.addGrade
         },
         {
-          path:'reviseswiper/:id', 
+          path:'reviseGrade/:id', 
           meta:{
-            title:'修改轮播图页'
+            title:'修改班级'
           },
-          component: components.addswiper
+          component: components.addGrade
         },
         {
-          path:'topiclist', 
+          path:'subjectList', 
           meta:{
-            title:'主题列表页'
+            title:'科目列表'
           },
-          component: components.topiclist
+          component: components.subjectList
         },
         {
-          path:'topicdetail/:id', 
+          path:'addSubject', 
           meta:{
-            title:'主题详情页'
+            title:'添加科目'
           },
-          component: components.topicdetail
+          component: components.addSubject
         },
+        {
+          path:'reviseSubject/:id', 
+          meta:{
+            title:'修改科目'
+          },
+          component: components.addSubject
+        },
+        {
+          path: 'courseList',
+          meta: {
+            title : '课程列表'
+          },
+          component: components.courseList
+        },
+        {
+          path: 'addCourse',
+          meta: {
+            title : '添加课程'
+          },
+          component: components.addCourse
+        },
+        {
+          path: 'reviseCourse/:id',
+          meta: {
+            title : '修改课程'
+          },
+          component: components.addCourse
+        }
       ]
     }
   ]

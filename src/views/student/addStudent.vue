@@ -18,12 +18,12 @@
                 <el-form-item label="密码" required v-if="!isrevise">
                     <el-input v-model="formData.password" type="password"></el-input>
                 </el-form-item>
-                <el-form-item label="院系" required>
+                <el-form-item label="院系">
                     <el-select v-model="faculty">
                         <el-option v-for="item in facultyCatalog" :key="item._id" :label="item.facultyName" :value="item._id"/>
                     </el-select>
                 </el-form-item>
-                <el-form-item label="专业" required>
+                <el-form-item label="专业">
                     <el-select v-model="major" placeholder="请先选择一个院系">
                         <el-option v-for="item in majorCatalog" :key="item._id" :label="item.majorName" :value="item._id"/>
                     </el-select>
@@ -85,24 +85,31 @@ import Uploadimg from '@/components/Uploadimg'
         methods:{
             // 添加新用户 
             handleSubmit(){
+                if (this.formData.numId && this.formData.username && this.formData.password && this.formData.grade) {
 
-                this.$axios.post(`/user/student`, this.formData).then( res => {
-                    if (res.code == 0) {
-                        this.$message.success(res.msg)
-                        setTimeout( () => {
-                            this.$router.push('/layout/studentList');
-                        }, 500)
-                    } else {
-                        this.$message.info(res.msg)
-                    }
-                })
+                    this.$axios.post(`/user/student`, this.formData).then( res => {
+                        if (res.code == 0) {
+                            this.$message.success(res.msg)
+                            setTimeout( () => {
+                                this.$router.push('/layout/studentList');
+                            }, 500)
+                        } else {
+                            this.$message.info(res.msg)
+                        }
+                    })
+                } else {
+                    this.$message('请输入必填字段')
+                }
+                
             },
             // 获取用户信息，用于修改
             getdata(){
                 let {id} = this.$route.params
                 this.$axios.get(`/user/student/${id}`).then(res => {
-                    let data = res.data;
-                    this.formData = data;
+                    this.formData = res.data;
+                    this.gradeCatalog = [res.data.grade];
+                    this.formData.grade = res.data.grade._id;
+
                 })
             },
             // 修改用户
@@ -129,7 +136,7 @@ import Uploadimg from '@/components/Uploadimg'
 
             // 获取某院系下所有专业
             handleMajor(id) {
-                this.$axios.get(`/major/${id}`).then( res => {
+                this.$axios.get(`/major/faculty/${id}`).then( res => {
                     if (res.code == 0 ) {
                         this.majorCatalog = res.data;
                     }
@@ -138,7 +145,7 @@ import Uploadimg from '@/components/Uploadimg'
 
             // 获取某专业下所有班级
             handleGrade(id) {
-                this.$axios.get(`/grade/${id}`).then( res => {
+                this.$axios.get(`/grade/major/${id}`).then( res => {
                     if (res.code == 0 ) {
                         this.gradeCatalog = res.data;
                     }
