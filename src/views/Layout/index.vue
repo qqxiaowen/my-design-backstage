@@ -37,8 +37,8 @@ import Vue from 'vue'
                 if (res.code == 0 && res.data.superAdmin == 1) {
                     this.statusMsg = '管理员',
                     this.status = 1;
-                    this.teacherInfo = res.data;
                 }
+                    this.teacherInfo = res.data;
             })
         }
         

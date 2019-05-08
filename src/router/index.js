@@ -20,6 +20,8 @@ const components = {
   addSubject: () => import('@/views/subject/addSubject.vue'),
   courseList: () => import('../views/course/courseList.vue'),
   addCourse: () => import('../views/course/addCourse.vue'),
+  myselfInfo: () => import('../views/myself/myselfInfo.vue'),
+  myselfPassword: () => import('../views/myself/myselfPassword.vue')
 }
 
 const router = new Router({
@@ -193,6 +195,20 @@ const router = new Router({
             title : '修改课程'
           },
           component: components.addCourse
+        },
+        {
+          path: 'myselfInfo',
+          meta: {
+            title: '修改个人信息'
+          },
+          component: components.myselfInfo
+        },
+        {
+          path: 'myselfPassword',
+          meta: {
+            title: '修改个人密码'
+          },
+          component: components.myselfPassword
         }
       ]
     }
