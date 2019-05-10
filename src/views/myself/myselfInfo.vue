@@ -68,7 +68,7 @@ import Uploadimg from '../../components/Uploadimg';
         mounted() {
             setTimeout( () => {
                 this.formData = this.teacherInfo;
-            }, 300)
+            }, 100)
         }
     }
 </script>

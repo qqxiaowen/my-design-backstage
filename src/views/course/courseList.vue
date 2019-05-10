@@ -71,7 +71,7 @@
 
             setTimeout(() => {
                 this.getdata();
-            }, 300);
+            }, 100);
         }
         
     }
